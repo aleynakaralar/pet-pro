@@ -1,41 +1,96 @@
-import React from 'react'
-import {AppBar,Link, Toolbar, Grid, Box, List, ListItem} from "@mui/material"
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 import logo from "../assests/logo.jpeg";
 
+export default function Navbar() {
+  const navigate = useNavigate();
 
-const Navbar = () => {
+  const handleHome = () => {
+    navigate("/");
+  };
+  const handleAbout = () => {
+    navigate("/aboutus/");
+  };
+  const handleAnimalMate = () => {
+    navigate("/animalMate");
+  };
+  const handleContact = () => {
+    navigate("/contact");
+  };
+  const handleLogin = () => {
+    navigate("/login");
+  };
+  const handleSignup = () => {
+    navigate("/signup");
+  };
+
   return (
- 
- <AppBar  position="static" sx={{background:"#fa8072"}}>
-    <Toolbar>
-        <Grid container   >
-            <Grid item xs={2} p={2} >
-            <Link href="/">
-                 <Box
-                  component="img"
-                  sx={{ height: 100 }}
-                  alt="Logo"
-                  src={logo}
-                 />
-            </Link>
-            </Grid>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={8} >
-              <List sx={{ display:"flex", flexDirection:"row", pt:5}}>
-                <ListItem><Link href="/"  underline="none" color="black" fontSize={24}>Home</Link></ListItem>
-                <ListItem><Link href="/animalmate" underline="none" color="black" fontSize={24} >Mate</Link></ListItem>
-                <ListItem><Link href="/aboutus" underline="none" color="black" fontSize={24}>About</Link></ListItem>
-                <ListItem><Link href="/contact" underline="none" color="black" fontSize={24}>Contact</Link></ListItem>
-                <ListItem><Link href="/ligin" underline="none" color="black" fontSize={24}>Login</Link></ListItem>
-                <ListItem><Link href="/signup" underline="none" color="black" fontSize={24}>Sign Up</Link></ListItem>
-              </List>
-            </Grid>
+    <Grid container spacing={2}>
+      <AppBar position="static" color="warning">
+        <Grid item m={5}>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Box component="img" sx={{ height: 100 }} alt="Logo" src={logo} />
+            <Box display="flex" justifyContent="center">
+              <Typography
+                variant="h6"
+                component="div"
+                onClick={handleHome}
+                px={2}
+              >
+                Home
+              </Typography>
+              <Typography
+                variant="h6"
+                component="div"
+                onClick={handleAbout}
+                px={2}
+              >
+                About Us
+              </Typography>
+              <Typography
+                variant="h6"
+                component="div"
+                onClick={handleAnimalMate}
+                px={2}
+              >
+                Animal Mate
+              </Typography>
+              <Typography
+                variant="h6"
+                component="div"
+                onClick={handleContact}
+                px={2}
+              >
+                Contact
+              </Typography>
+              <Typography
+                variant="h6"
+                component="div"
+                onClick={handleLogin}
+                px={2}
+              >
+                Login
+              </Typography>
+              <Typography
+                variant="h6"
+                component="div"
+                onClick={handleSignup}
+                px={2}
+              >
+                Sign Up
+              </Typography>
+            </Box>
+          </Box>
         </Grid>
-        
-    </Toolbar>
- </AppBar>
-
-  )
+      </AppBar>
+    </Grid>
+  );
 }
-
-export default Navbar
