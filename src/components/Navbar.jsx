@@ -1,10 +1,13 @@
 import * as React from "react";
+import  { useContext } from 'react';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import logo from "../assests/logo.jpeg";
+import { AuthContext } from '../context/AuthContext';
+import { logout } from '../auth/firebase';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ export default function Navbar() {
   const handleSignup = () => {
     navigate("/signup");
   };
-
+  const {currentUser} = useContext(AuthContext)
   return (
     <Grid container spacing={2}>
       <AppBar position="static" color="warning">
@@ -87,6 +90,17 @@ export default function Navbar() {
               >
                 Sign Up
               </Typography>
+              {currentUser ? (
+      <>
+      <Typography className='mb-0 text-capitalize'>
+      {currentUser.displayName}
+      </Typography>
+      <Button className="ms-2 btn btn-outline-light"  onClick = {()=> logout()}>Logout</Button>
+      </>) : (
+        <>
+        <Button className="ms-2 btn btn-outline-light" onClick={() => navigate("/login")}>Login</Button>
+        <Button className="ms-2 btn btn-outline-light" onClick={() => navigate("/register")} >Register</Button>
+        </>)}
             </Box>
           </Box>
         </Grid>
